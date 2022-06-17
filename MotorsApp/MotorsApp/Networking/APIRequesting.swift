@@ -22,3 +22,7 @@ extension APIRequesting {
     public var httpMethod: String? { return "GET" }
     public var bodyData: Encodable? { return nil }
 }
+
+struct SearchResponse<T: Decodable>: Decodable {
+    var searchResults: [T]
+}

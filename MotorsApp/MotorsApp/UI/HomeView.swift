@@ -26,8 +26,8 @@ struct HomeView: View {
                 Text("SEARCH").frame(maxWidth: .infinity)
             })
             Spacer()
-            List(viewModel.results, id: \.self) { result in
-                ListItemView(result: result)
+            List(viewModel.results, id: \.self) { motor in
+                ListItemView(motor: motor)
             }
         }.padding()
         .errorView(text: $viewModel.errorText)
@@ -36,10 +36,10 @@ struct HomeView: View {
 
 struct ListItemView: View {
     
-    var result: MotorResult
+    var motor: Motor
     
     var body: some View {
-        Text("make: \(result.make)")
+        Text("make: \(motor.make)")
     }
 }
 
@@ -48,8 +48,8 @@ struct ContentView_Previews: PreviewProvider {
     static var testViewModel: HomeViewModel {
         let viewModel = HomeViewModel(repository: MotorsRepository(apiClient: MockAPIClient()))
         viewModel.results = [
-            MotorResult(id: "000", name: "Car 0", title: "Car zero", make: "Nissan", model: "Leaf", year: "2002", price: "£2461.20"),
-            MotorResult(id: "001", name: "Car 1", title: "Car one", make: "Honda", model: "CR-V", year: "2010", price: "£8000.20")]
+            Motor(id: "000", name: "Car 0", title: "Car zero", make: "Nissan", model: "Leaf", year: "2002", price: "£2461.20"),
+            Motor(id: "001", name: "Car 1", title: "Car one", make: "Honda", model: "CR-V", year: "2010", price: "£8000.20")]
         return viewModel
     }
     

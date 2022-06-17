@@ -21,7 +21,7 @@ class HomeViewModel: ObservableObject {
     @Published var year: String = ""
     
     @Published var errorText: String = ""
-    @Published var results: [MotorResult] = []
+    @Published var results: [Motor] = []
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -35,7 +35,7 @@ class HomeViewModel: ObservableObject {
                     self.errorText = "Failed with error: \(error.localizedDescription)"
                 }
             }, receiveValue: { value in
-                self.results = value
+                self.results = value.searchResults
             })
             .store(in: &cancellables)
     }

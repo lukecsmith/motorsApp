@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct MotorResult: Decodable, Hashable {
+struct MotorSearchResults: Decodable {
+    var searchResults: [Motor]
+}
+
+struct Motor: Decodable, Hashable {
     var id: String
     var name: String
     var title: String

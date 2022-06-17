@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 protocol MotorsQuerying {
-    func queryMotorsWith(make: String, model: String, year: String) -> AnyPublisher<[MotorResult], Error>
+    func queryMotorsWith(make: String, model: String, year: String) -> AnyPublisher<MotorSearchResults, Error>
 }
 
 class MotorsRepository: MotorsQuerying {
@@ -20,7 +20,7 @@ class MotorsRepository: MotorsQuerying {
     
     var apiClient: APIClient
     
-    func queryMotorsWith(make: String, model: String, year: String) -> AnyPublisher<[MotorResult], Error> {
+    func queryMotorsWith(make: String, model: String, year: String) -> AnyPublisher<MotorSearchResults, Error> {
         let request = MotorsRequest(make: make, model: model, year: year)
         return apiClient.send(request)
     }

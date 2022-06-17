@@ -8,9 +8,6 @@
 
 import SwiftUI
 
-/**
- A ViewModifier that allows .errorView(text.. to be applied to any View.
- */
 extension View {
     func errorView(text: Binding<String>) -> some View {
         self.modifier(ErrorViewModifier(text: text))
@@ -28,10 +25,6 @@ struct ErrorViewModifier: ViewModifier {
     }
 }
 
-/**
- ErrorBox presenter for delivery from another SwiftUI View.  The error text is passed in via the @Binding text property.  when passed in, the .onChange closure is fired below, which sets the visibleErrorText property with the incoming text, in turn making the red text box appear
- and show the text.  At this time a timer starts, which will clear the visible text and the passed in text property too so that the red box disappears.
- */
 struct ErrorView: View {
     
     @Binding var text: String
@@ -64,9 +57,6 @@ struct ErrorView: View {
     }
 }
 
-/**
- All Error providers ie ErrorContainerView / ErrorView above deliver the same red error box described here
- */
 struct ErrorBox: View {
     
     let errorMessage: String

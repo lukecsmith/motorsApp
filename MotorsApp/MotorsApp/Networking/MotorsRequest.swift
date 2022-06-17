@@ -11,7 +11,7 @@ struct MotorsRequest: APIRequesting {
     
     var debugPrint = true
     
-    typealias Response = [MotorResult]
+    typealias Response = MotorSearchResults
     
     var queryItems: [String : String]?
     
