@@ -20,10 +20,15 @@ struct HomeView: View {
             TextField("Make", text: $viewModel.make)
             TextField("Model", text: $viewModel.model)
             TextField("Year", text: $viewModel.year)
+            Button(action: {
+                viewModel.queryMotors()
+            }, label: {
+                Text("SIGN UP").frame(maxWidth: .infinity)
+            })
+            Spacer()
             List(viewModel.results, id: \.self) { result in
                 ListItemView(result: result)
             }
-            Spacer()
         }.padding()
     }
 }
