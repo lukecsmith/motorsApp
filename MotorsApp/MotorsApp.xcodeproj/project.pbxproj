@@ -23,6 +23,7 @@
 		A33881C3285C8C3D00D5A7E0 /* Encodable_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33881C2285C8C3D00D5A7E0 /* Encodable_Extensions.swift */; };
 		A36C3FFA285C8D9B00942EEC /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C3FF9285C8D9B00942EEC /* DataError.swift */; };
 		A36C3FFF285CA14700942EEC /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C3FFE285CA14700942EEC /* ErrorView.swift */; };
+		A36C4001285CE2AD00942EEC /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C4000285CE2AD00942EEC /* MockAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		A33881C2285C8C3D00D5A7E0 /* Encodable_Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable_Extensions.swift; sourceTree = "<group>"; };
 		A36C3FF9285C8D9B00942EEC /* DataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
 		A36C3FFE285CA14700942EEC /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		A36C4000285CE2AD00942EEC /* MockAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				A33881C0285C8BBE00D5A7E0 /* APIRequesting.swift */,
 				A33881B9285BAE8C00D5A7E0 /* MotorsRequest.swift */,
 				A36C3FF9285C8D9B00942EEC /* DataError.swift */,
+				A36C4000285CE2AD00942EEC /* MockAPIClient.swift */,
 				A33881C2285C8C3D00D5A7E0 /* Encodable_Extensions.swift */,
 			);
 			path = Networking;
@@ -321,6 +324,7 @@
 				A33881C1285C8BBE00D5A7E0 /* APIRequesting.swift in Sources */,
 				A33881B2285B9BA600D5A7E0 /* MotorsRepository.swift in Sources */,
 				A338818A285B984B00D5A7E0 /* HomeView.swift in Sources */,
+				A36C4001285CE2AD00942EEC /* MockAPIClient.swift in Sources */,
 				A33881BA285BAE8C00D5A7E0 /* MotorsRequest.swift in Sources */,
 				A33881B6285BA02700D5A7E0 /* HomeViewModel.swift in Sources */,
 				A3388188285B984B00D5A7E0 /* MotorsApp.swift in Sources */,

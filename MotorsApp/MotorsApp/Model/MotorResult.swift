@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MotorResult: Codable, Hashable {
+struct MotorResult: Decodable, Hashable {
     var id: String
     var name: String
     var title: String

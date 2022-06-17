@@ -8,15 +8,20 @@
 import Foundation
 
 struct MotorsRequest: APIRequesting {
+    
     var debugPrint = true
     
     typealias Response = [MotorResult]
     
-    var make: String
-    var model: String
-    var year: String
+    var queryItems: [String : String]?
     
     var resourceName: String {
-        return "search?make=\(make)&model=\(model)&year=\(year)"
+        return "search"
+    }
+    
+    init(make: String, model: String, year: String) {
+        self.queryItems = ["make": make,
+                           "model": model,
+                           "year": year]
     }
 }

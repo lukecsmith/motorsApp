@@ -18,11 +18,10 @@ public protocol APIClient {
 
 class MobileAPIClient: APIClient {
     
-    var baseEndpointUrl: URL
+    var baseEndpointUrl: URL = URL(string: "https://mcuapi.mocklab.io/")!
     private var session: URLSession
     
-    init(baseURL: URL, session: URLSession = URLSession.shared) {
-        self.baseEndpointUrl = baseURL
+    init(session: URLSession = URLSession.shared) {
         self.session = session
     }
     
@@ -35,10 +34,18 @@ class MobileAPIClient: APIClient {
     
     public func send<T: APIRequesting>(_ request: T) -> AnyPublisher<T.Response, Error> {
         let endpoint = self.endpoint(for: request)
+        guard var components = URLComponents(string: endpoint.absoluteString) else {
+            fatalError("unable to build url")
+        }
+        if let queryItems = request.queryItems {
+            components.queryItems = queryItems.map { (key, value) in
+                URLQueryItem(name: key, value: value)
+            }
+        }
         if request.debugPrint {
             print("Calling : \(endpoint.absoluteString)")
         }
-        var apiRequest = URLRequest(url: endpoint, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 20)
+        var apiRequest = URLRequest(url: components.url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 20)
         apiRequest.httpMethod = request.httpMethod
         
         if let bodyData = request.bodyData {

@@ -14,10 +14,11 @@ protocol MotorsQuerying {
 
 class MotorsRepository: MotorsQuerying {
     
-    let baseURL = URL(string: "https://mcuapi.mocklab.io/")!
-    lazy var apiClient = MobileAPIClient(baseURL: baseURL)
-    var error: DataError?
-    var returnedMotors: [MotorResult]?
+    init(apiClient: APIClient) {
+        self.apiClient = apiClient
+    }
+    
+    var apiClient: APIClient
     
     func queryMotorsWith(make: String, model: String, year: String) -> AnyPublisher<[MotorResult], Error> {
         let request = MotorsRequest(make: make, model: model, year: year)

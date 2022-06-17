@@ -14,6 +14,7 @@ public protocol APIRequesting: Encodable {
     var httpMethod: String? { get }
     var bodyData: Encodable? { get }
     var debugPrint: Bool { get }
+    var queryItems: [String: String]? { get }
 }
 
 extension APIRequesting {

@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct MotorsApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            HomeView(viewModel: HomeViewModel(repository: MotorsRepository()))
+            HomeView(viewModel: HomeViewModel(repository: MotorsRepository(apiClient: MobileAPIClient())))
         }
     }
 }
