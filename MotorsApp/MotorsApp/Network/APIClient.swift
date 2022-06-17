@@ -42,11 +42,12 @@ class MobileAPIClient: APIClient {
                 URLQueryItem(name: key, value: value)
             }
         }
-        if request.debugPrint {
-            print("Calling : \(endpoint.absoluteString)")
-        }
         var apiRequest = URLRequest(url: components.url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 20)
         apiRequest.httpMethod = request.httpMethod
+        
+        if request.debugPrint {
+            print("Calling : \(apiRequest.url?.absoluteString ?? "")")
+        }
         
         if let bodyData = request.bodyData {
             apiRequest.httpBody = bodyData.toJSONData()

@@ -17,17 +17,29 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
+            Image("MotorsLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
             TextField("Make", text: $viewModel.make)
+                .textFieldStyle()
             TextField("Model", text: $viewModel.model)
+                .textFieldStyle()
             TextField("Year", text: $viewModel.year)
+                .textFieldStyle()
             Button(action: {
-                viewModel.queryMotors()
+                withAnimation {
+                    viewModel.queryMotors()
+                }
             }, label: {
-                Text("SEARCH").frame(maxWidth: .infinity)
-            })
-            Spacer()
-            List(viewModel.results, id: \.self) { motor in
-                ListItemView(motor: motor)
+                Text("Search").frame(maxWidth: .infinity)
+            }).buttonStyle(BlueButton())
+            ScrollView {
+                VStack {
+                    ForEach(viewModel.results, id: \.self) { motor in
+                        ListItemView(motor: motor)
+                            .frame(width: .infinity)
+                    }
+                }.frame(maxWidth: .infinity)
             }
         }.padding()
         .errorView(text: $viewModel.errorText)
@@ -39,7 +51,19 @@ struct ListItemView: View {
     var motor: Motor
     
     var body: some View {
-        Text("make: \(motor.make)")
+        VStack(alignment: .leading) {
+            Text("title: \(motor.title)")
+            Text("name: \(motor.name)")
+            Text("price: \(motor.price)")
+            Text("make: \(motor.make)")
+            Text("model: \(motor.model)")
+        }
+        .padding()
+        .background(Color.gray)
+        .foregroundColor(.white)
+        .cornerRadius(10)
+        .clipShape(Rectangle())
+        
     }
 }
 
