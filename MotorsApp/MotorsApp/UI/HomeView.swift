@@ -16,11 +16,11 @@ struct HomeView: View {
             Image("MotorsLogo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            TextField("Make", text: $viewModel.make)
+            TextField("Make", text: $viewModel.makeField)
                 .textFieldStyle()
-            TextField("Model", text: $viewModel.model)
+            TextField("Model", text: $viewModel.modelField)
                 .textFieldStyle()
-            TextField("Year", text: $viewModel.year)
+            TextField("Year", text: $viewModel.yearField)
                 .textFieldStyle()
             Button(action: {
                 withAnimation {
@@ -74,8 +74,20 @@ struct ContentView_Previews: PreviewProvider {
     static var testViewModel: HomeViewModel {
         let viewModel = HomeViewModel(repository: MotorsRepository(apiClient: MockAPIClient()))
         viewModel.results = [
-            Motor(id: "000", name: "Car 0", title: "Car zero", make: "Nissan", model: "Leaf", year: "2002", price: "£2461.20"),
-            Motor(id: "001", name: "Car 1", title: "Car one", make: "Honda", model: "CR-V", year: "2010", price: "£8000.20")]
+            Motor(id: "000",
+                  name: "Car 0",
+                  title: "Car zero",
+                  make: "Nissan",
+                  model: "Leaf",
+                  year: "2002",
+                  price: "£2461.20"),
+            Motor(id: "001",
+                  name: "Car 1",
+                  title: "Car one",
+                  make: "Honda",
+                  model: "CR-V",
+                  year: "2010",
+                  price: "£8000.20")]
         return viewModel
     }
     

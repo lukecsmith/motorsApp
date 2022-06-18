@@ -1,20 +1,12 @@
 //
-//  APIClient.swift
+//  MobileAPIClient.swift
 //  MotorsApp
 //
-//  Created by Luke Smith on 16/06/2022.
+//  Created by Luke Smith on 18/06/2022.
 //
-
-// Data Layer, handles network calls
 
 import Combine
 import Foundation
-
-public protocol APIClient {
-    var decoder: JSONDecoder { get }
-    func send<T: APIRequesting>(_ request: T) -> AnyPublisher<T.Response, Error>
-    func endpoint<T: APIRequesting>(for request: T) -> URL
-}
 
 class MobileAPIClient: APIClient {
     

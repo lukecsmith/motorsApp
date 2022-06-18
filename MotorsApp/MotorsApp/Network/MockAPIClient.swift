@@ -20,16 +20,16 @@ class MockAPIClient: APIClient {
         return URL(string: "")!
     }
     
-    var mock: (() -> Result<Any, Error>)?
+    var mockResult: (() -> Result<Any, Error>)?
     
-    init(mock: (() -> Result<Any, Error>)? = nil) {
-        self.mock = mock
+    init(mockResult: (() -> Result<Any, Error>)? = nil) {
+        self.mockResult = mockResult
     }
     
     func send<Request, Response>(_ request: Request) -> AnyPublisher<Response, Error> {
         return Deferred {
             Future { promise in
-                guard let result = self.mock?() else {
+                guard let result = self.mockResult?() else {
                     promise(.failure(MockError.notImplemented))
                     return
                 }

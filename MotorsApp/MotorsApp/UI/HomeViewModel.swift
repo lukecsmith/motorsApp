@@ -16,9 +16,9 @@ class HomeViewModel: ObservableObject {
     
     var repository: MotorsQuerying
     
-    @Published var make: String = ""
-    @Published var model: String = ""
-    @Published var year: String = ""
+    @Published var makeField: String = ""
+    @Published var modelField: String = ""
+    @Published var yearField: String = ""
     
     @Published var errorText: String = ""
     @Published var results: [Motor] = []
@@ -26,12 +26,12 @@ class HomeViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     func queryMotors() {
-        guard make.count > 0 || model.count > 0 || year.count > 0 else {
+        guard makeField.count > 0 || modelField.count > 0 || yearField.count > 0 else {
             errorText = "Please enter something for Make, Model or Year"
             return
         }
         results = []
-        repository.queryMotorsWith(make: make, model: model, year: year)
+        repository.queryMotorsWith(make: makeField, model: modelField, year: yearField)
             .sink(receiveCompletion: { [weak self] result in
                 switch result {
                 case .finished:
