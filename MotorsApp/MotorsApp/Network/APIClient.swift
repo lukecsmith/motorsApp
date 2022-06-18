@@ -46,7 +46,7 @@ class MobileAPIClient: APIClient {
         apiRequest.httpMethod = request.httpMethod
         
         if request.debugPrint {
-            print("Calling : \(apiRequest.url?.absoluteString ?? "")")
+            print("Calling : \(apiRequest.url?.absoluteString ?? endpoint.absoluteString)")
         }
         
         if let bodyData = request.bodyData {

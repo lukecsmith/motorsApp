@@ -9,14 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     
-    init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
-    }
-    
     @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Image("MotorsLogo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -34,10 +30,12 @@ struct HomeView: View {
                 Text("Search").frame(maxWidth: .infinity)
             }).buttonStyle(BlueButton())
             ScrollView {
-                VStack {
+                VStack(alignment: .leading) {
                     ForEach(viewModel.results, id: \.self) { motor in
-                        ListItemView(motor: motor)
-                            .frame(width: .infinity)
+                        HStack {
+                            ListItemView(motor: motor)
+                            Spacer()
+                        }
                     }
                 }.frame(maxWidth: .infinity)
             }
@@ -51,19 +49,23 @@ struct ListItemView: View {
     var motor: Motor
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("title: \(motor.title)")
-            Text("name: \(motor.name)")
-            Text("price: \(motor.price)")
-            Text("make: \(motor.make)")
-            Text("model: \(motor.model)")
+        ZStack {
+            Color.gray
+            HStack {
+                VStack(alignment: .leading, spacing: 5.0) {
+                    Text("Make: \(motor.make)")
+                    Text("Year: \(motor.year)")
+                    Text("Model: \(motor.model)")
+                    Text("Title: \(motor.title)")
+                    Text("Name: \(motor.name)")
+                    Text("Price: \(motor.price)")
+                }.padding()
+                Spacer()
+            }.font(.body)
         }
-        .padding()
-        .background(Color.gray)
         .foregroundColor(.white)
         .cornerRadius(10)
         .clipShape(Rectangle())
-        
     }
 }
 
@@ -79,5 +81,10 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         HomeView(viewModel: testViewModel)
+            .previewDevice("iPhone 13 Pro Max")
+            .preferredColorScheme(.light)
+        HomeView(viewModel: testViewModel)
+            .previewDevice("iPhone 8")
+            .preferredColorScheme(.dark)
     }
 }
