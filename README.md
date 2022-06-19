@@ -1,4 +1,4 @@
-# motorsApp
+# MotorsApp
 
 This app shows my approach to SOLID principles, clean architecture and testing in a SwiftUI iOS app. (as of June 2022!)
 
