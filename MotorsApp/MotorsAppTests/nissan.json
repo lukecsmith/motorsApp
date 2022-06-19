@@ -1,0 +1,40 @@
+{
+  "searchResults": [
+    {
+      "id": "773301",
+      "name": "Nissan ",
+      "title": "Nice car for sale",
+      "make": "Nissan",
+      "model": "",
+      "year": "",
+      "price": "£551.00"
+    },
+    {
+      "id": "987136",
+      "name": "Nissan ",
+      "title": "Used car in mint condition",
+      "make": "Nissan",
+      "model": "",
+      "year": "",
+      "price": "£429.00"
+    },
+    {
+      "id": "174174",
+      "name": "Nissan ",
+      "title": "Low mileage car for sale",
+      "make": "Nissan",
+      "model": "",
+      "year": "",
+      "price": "£291.00"
+    },
+    {
+      "id": "666760",
+      "name": "Nissan ",
+      "title": "Car for sale with unique specs",
+      "make": "Nissan",
+      "model": "",
+      "year": "",
+      "price": "£999.00"
+    }
+  ]
+}

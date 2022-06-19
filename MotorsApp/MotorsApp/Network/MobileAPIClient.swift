@@ -11,7 +11,7 @@ import Foundation
 class MobileAPIClient: APIClient {
     
     var baseEndpointUrl: URL = URL(string: "https://mcuapi.mocklab.io/")!
-    private var session: URLSession
+    var session: URLSession
     
     init(session: URLSession = URLSession.shared) {
         self.session = session
@@ -30,7 +30,9 @@ class MobileAPIClient: APIClient {
             fatalError("unable to build url")
         }
         if let queryItems = request.queryItems {
-            components.queryItems = queryItems.map { (key, value) in
+            //order query items alphabetically (helps with unit tests!)
+            let orderedQueryItems = queryItems.sorted(by: { $0 < $1 })
+            components.queryItems = orderedQueryItems.map { (key, value) in
                 URLQueryItem(name: key, value: value)
             }
         }

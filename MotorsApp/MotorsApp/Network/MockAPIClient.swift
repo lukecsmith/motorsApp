@@ -47,7 +47,6 @@ class MockAPIClient: APIClient {
                     
                     promise(.success(responseValue))
                 }
-
             }
         }
         .eraseToAnyPublisher()
