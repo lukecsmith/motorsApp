@@ -18,16 +18,16 @@ To ensure isolation of layers so that elements are loosely coupled (which means 
 elsewhere or swapped out easily if required), protocols govern the interfaces between layers.  Heres 
 how this works in practise in the architecture:
 
-HomeView, HomeViewModel - knows about:
+**HomeView, HomeViewModel - knows about:**<br/>
 MotorsQuerying protocol (query fields in, Motor objects back)<br/>
 ^<br/>
 ^<br/>
-MotorsRepository: MotorsQuerying, knows about:<br/>
+**MotorsRepository: MotorsQuerying, knows about:**<br/>
 APIClient protocol (takes data request, returns data objects)<br/>
 ^<br/>
 ^<br/>
-MobileAPIClient: APIClient, knows about<br/>
+**MobileAPIClient: APIClient, knows about**<br/>
 URLSession etc., performs actual network calls<br/>
 ^<br/>
 ^<br/>
-Internet<br/>
+**Internet**<br/>
