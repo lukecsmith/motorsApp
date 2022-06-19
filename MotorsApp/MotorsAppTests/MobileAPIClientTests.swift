@@ -12,7 +12,6 @@ import XCTest
 //Things it will do:
 
 /*
- - Given an APIRequesting object with typealias return types, will decode and return those
  - baseEndpoint works
  - given response is status code 200, will return data
  - given any other status code, will return apiError(statusCode)
@@ -28,8 +27,10 @@ class MobileAPIClientTests: XCTestCase {
         //create client to test
         let testClient = MobileAPIClient()
         //mock URLSession on client to return json loaded from bundle (rather than a real call)
-        testClient.session = mockURLSessionReturning(jsonFilename: "nissan", for: "https://mcuapi.mocklab.io/search?make=nissan&model=&year=")
+        testClient.session = mockURLSessionReturning(jsonFilename: "nissan",
+                                                     for: "https://mcuapi.mocklab.io/search?make=nissan&model=&year=")
         
+        // MotorsRequest includes Response typealias, which defines the type to decode the json into, in this case SearchResults, which contain [Motor]s
         let request = MotorsRequest(make: "nissan", model: "", year: "")
         
         let completedExpectation = expectation(description: #function)
@@ -51,7 +52,13 @@ class MobileAPIClientTests: XCTestCase {
             .store(in: &cancellables)
         waitForExpectations(timeout: 1.0, handler: nil)
         
-        XCTAssertNotNil(returnedObject)
+        guard let objects = returnedObject?.searchResults else {
+            XCTFail("Object still nil")
+            return
+        }
+        
+        //assert that 4 Motor objects were decoded from the call
+        XCTAssertEqual(objects.count, 4)
     }
     
     func mockURLSessionReturning(jsonFilename: String,
