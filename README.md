@@ -19,15 +19,15 @@ elsewhere or swapped out easily if required), protocols govern the interfaces be
 how this works in practise in the architecture:
 
 HomeView, HomeViewModel - knows about:
-  MotorsQuerying protocol (query fields in, Motor objects back)
-    ^
-    |
- MotorsRepository: MotorsQuerying, knows about:
-  APIClient protocol (takes data request, returns data objects)
-    ^
-    | 
- MobileAPIClient: APIClient, knows about
-  URLSession etc., performs actual network calls
-    ^
-    |
-  Internet
+MotorsQuerying protocol (query fields in, Motor objects back)
+^
+^
+MotorsRepository: MotorsQuerying, knows about:
+APIClient protocol (takes data request, returns data objects)
+^
+^
+MobileAPIClient: APIClient, knows about
+URLSession etc., performs actual network calls
+^
+^
+Internet
