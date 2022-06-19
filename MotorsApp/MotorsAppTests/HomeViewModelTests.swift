@@ -10,12 +10,67 @@ import XCTest
 
 class HomeViewModelTests: XCTestCase {
     
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    //Test:
+    func testStartingMotorQueryWithEmptyFieldsCausesError() {
+        let mockMotorResponse = Motor(id: "0", name: "car", title: "car", make: "car", model: "model", year: "2000", price: "£1.00")
+        let viewModel = HomeViewModel(repository: MockMotorsRepository(mockResult: { .success([mockMotorResponse])}))
+        
+        //assert all fields empty
+        XCTAssertEqual(viewModel.makeField, "")
+        XCTAssertEqual(viewModel.modelField, "")
+        XCTAssertEqual(viewModel.yearField, "")
+        
+        //check theres no error
+        XCTAssertEqual(viewModel.errorText, "")
+        
+        viewModel.queryMotors()
+        
+        //after running query, should now be an error
+        XCTAssertEqual(viewModel.errorText, "Please enter something for Make, Model or Year")
+        //and results should still be empty
+        XCTAssertEqual(viewModel.results, [])
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testMotorQuerySuccessPopulatesResultsArray() {
+        let mockMotorResponse = Motor(id: "0", name: "car", title: "car", make: "car", model: "Nissan", year: "2000", price: "£1.00")
+        let viewModel = HomeViewModel(repository: MockMotorsRepository(mockResult: { .success([mockMotorResponse]) }))
+        
+        //populate a field so the query is executed
+        viewModel.modelField = "Nissan"
+        
+        viewModel.queryMotors()
+        
+        //check results field has been populated
+        XCTAssertEqual(viewModel.results, [mockMotorResponse])
+    }
+    
+    func testMotorQueryFailureErrorIsPopulated() {
+        let viewModel = HomeViewModel(repository: MockMotorsRepository(mockResult: { .failure(DataError.networkingError) }))
+        
+        //populate a field so the query is executed
+        viewModel.modelField = "Nissan"
+        
+        viewModel.queryMotors()
+        
+        //check error text has been populated
+        XCTAssertEqual(viewModel.errorText, "Failed with error: The operation couldn’t be completed. (MotorsApp.DataError error 2.)")
+    }
+    
+    func testResultsFieldIsEmptiedOnStartingAQuery() {
+        let motor0 = Motor(id: "0", name: "car", title: "car", make: "car", model: "Nissan", year: "2000", price: "£1.00")
+        let motor1 = Motor(id: "1", name: "car", title: "car", make: "car", model: "Nissan", year: "2000", price: "£1.00")
+        
+        let viewModel = HomeViewModel(repository: MockMotorsRepository(mockResult: { .failure(DataError.networkingError) }))
+        //already existing results pre query:
+        viewModel.results = [motor0, motor1]
+        
+        //populate a field so the query is executed
+        viewModel.modelField = "Nissan"
+        
+        viewModel.queryMotors()
+        
+        //check results are empty post query, even though result was fail
+        XCTAssertEqual(viewModel.results, [])
     }
     
 }

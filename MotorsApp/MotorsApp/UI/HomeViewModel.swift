@@ -42,7 +42,7 @@ class HomeViewModel: ObservableObject {
                     self?.errorText = "Failed with error: \(error.localizedDescription)"
                 }
             }, receiveValue: { value in
-                self.results = value.searchResults
+                self.results = value
             })
             .store(in: &cancellables)
     }

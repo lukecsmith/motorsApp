@@ -53,10 +53,10 @@ struct ListItemView: View {
             Color.gray
             HStack {
                 VStack(alignment: .leading, spacing: 5.0) {
-                    Text("Make: \(motor.make)")
-                    Text("Year: \(motor.year)")
-                    Text("Model: \(motor.model)")
                     Text("Title: \(motor.title)")
+                    Text("Make: \(motor.make)")
+                    Text("Model: \(motor.model)")
+                    Text("Year: \(motor.year)")
                     Text("Name: \(motor.name)")
                     Text("Price: \(motor.price)")
                 }.padding()

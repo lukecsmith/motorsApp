@@ -15,7 +15,6 @@ extension View {
 }
 
 struct TextFieldStyle: ViewModifier {
-    
     func body(content: Content) -> some View {
         content
             .font(.title)

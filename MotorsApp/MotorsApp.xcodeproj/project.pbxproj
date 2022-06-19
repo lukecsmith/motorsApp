@@ -28,6 +28,7 @@
 		A3C110CA285DD21F0096E28D /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C110C9285DD21F0096E28D /* HomeViewModelTests.swift */; };
 		A3C110CC285DD2660096E28D /* MobileAPIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C110CB285DD2660096E28D /* MobileAPIClientTests.swift */; };
 		A3C110CE285DD31F0096E28D /* MobileAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C110CD285DD31F0096E28D /* MobileAPIClient.swift */; };
+		A3C110D0285E557D0096E28D /* MockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C110CF285E557D0096E28D /* MockRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		A3C110C9285DD21F0096E28D /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		A3C110CB285DD2660096E28D /* MobileAPIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAPIClientTests.swift; sourceTree = "<group>"; };
 		A3C110CD285DD31F0096E28D /* MobileAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAPIClient.swift; sourceTree = "<group>"; };
+		A3C110CF285E557D0096E28D /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				A3C110C7285DD20C0096E28D /* MotorsRepositoryTests.swift */,
 				A3C110C9285DD21F0096E28D /* HomeViewModelTests.swift */,
 				A3C110CB285DD2660096E28D /* MobileAPIClientTests.swift */,
+				A3C110CF285E557D0096E28D /* MockRepository.swift */,
 			);
 			path = MotorsAppTests;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3C110CC285DD2660096E28D /* MobileAPIClientTests.swift in Sources */,
+				A3C110D0285E557D0096E28D /* MockRepository.swift in Sources */,
 				A3C110C8285DD20C0096E28D /* MotorsRepositoryTests.swift in Sources */,
 				A3C110CA285DD21F0096E28D /* HomeViewModelTests.swift in Sources */,
 			);
