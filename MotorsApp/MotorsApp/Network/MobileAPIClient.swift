@@ -30,7 +30,7 @@ class MobileAPIClient: APIClient {
             fatalError("unable to build url")
         }
         if let queryItems = request.queryItems {
-            //order query items alphabetically (helps with unit tests!)
+            //order query items alphabetically
             let orderedQueryItems = queryItems.sorted(by: { $0 < $1 })
             components.queryItems = orderedQueryItems.map { (key, value) in
                 URLQueryItem(name: key, value: value)

@@ -9,15 +9,6 @@ import Combine
 import XCTest
 @testable import MotorsApp
 
-//Things it will do:
-
-/*
- - baseEndpoint works
- - given response is status code 200, will return data
- - given any other status code, will return apiError(statusCode)
- - given the wrong json, will return a decode error
- */
-
 class MobileAPIClientTests: XCTestCase {
     
     fileprivate var cancellables = Set<AnyCancellable>()
@@ -59,6 +50,42 @@ class MobileAPIClientTests: XCTestCase {
         
         //assert that 4 Motor objects were decoded from the call
         XCTAssertEqual(objects.count, 4)
+    }
+    
+    func testClientWillReportStatusCodesCorrectlyAsErrors() {
+        //create client to test
+        let testClient = MobileAPIClient()
+        //call set up to return a status code of 400 (Bad Request)
+        testClient.session = mockURLSessionReturning(jsonFilename: "nissan",
+                                                     for: "https://mcuapi.mocklab.io/search?make=nissan&model=&year=",
+                                                     statusCodeToReturn: 400)
+        
+        let request = MotorsRequest(make: "nissan", model: "", year: "")
+        
+        let completedExpectation = expectation(description: #function)
+        
+        var returnedError: Error?
+        
+        testClient.send(request)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .finished:
+                    print("finished")
+                case .failure(let error):
+                    returnedError = error
+                    completedExpectation.fulfill()
+                }
+            }, receiveValue: { _ in })
+            .store(in: &cancellables)
+        waitForExpectations(timeout: 1.0, handler: nil)
+        
+        guard let error = returnedError else {
+            XCTFail("Error missing")
+            return
+        }
+        
+        //assert that the given error status code was correctly reported
+        XCTAssertEqual(String(describing: error), "apiError(400)")
     }
     
     func mockURLSessionReturning(jsonFilename: String,
